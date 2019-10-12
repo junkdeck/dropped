@@ -1,12 +1,16 @@
 import React, {Component} from 'react'
+import {Provider} from 'react-redux'
+
+import Main from 'src/views/Main'
+
+import {store} from 'src/state/store'
 
 class App extends Component {
   render() {
-    console.log('hey man')
     return (
-      <div>
-        <p>hey ho</p>
-      </div>
+      <Provider store={store}>
+        <Main />
+      </Provider>
     )
   }
 }

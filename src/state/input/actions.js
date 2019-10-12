@@ -1,0 +1,1 @@
+export const SEARCH_INPUT = 'INPUT/SEARCH'

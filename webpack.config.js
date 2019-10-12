@@ -23,6 +23,10 @@ module.exports = {
   },
   resolve: {
     modules: [path.resolve('./src'), 'node_modules'],
+    extensions: ['.js', '.jsx', '.json'],
+    alias: {
+      src: path.resolve(__dirname, 'src/'),
+    },
   },
   module: {
     rules: [

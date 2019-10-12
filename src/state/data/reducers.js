@@ -2,10 +2,10 @@ import {combineReducers} from 'redux'
 
 import {LOAD_REQUEST, LOAD_ERROR, LOAD_SUCCESS} from './actions'
 
-const managers = (state = [], action) => {
+const employees = (state = [], action) => {
   switch (action.type) {
     case LOAD_SUCCESS:
-      return action.list
+      return action.employees
     case LOAD_REQUEST:
     case LOAD_ERROR:
       return []
@@ -14,4 +14,16 @@ const managers = (state = [], action) => {
   }
 }
 
-export default combineReducers({managers})
+const accounts = (state = [], action) => {
+  switch (action.type) {
+    case LOAD_SUCCESS:
+      return action.accounts
+    case LOAD_ERROR:
+    case LOAD_REQUEST:
+      return []
+    default:
+      return state
+  }
+}
+
+export default combineReducers({employees, accounts})

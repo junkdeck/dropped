@@ -7,6 +7,10 @@ import Input from 'src/components/Input'
 import {fetchManagers} from 'src/state/data/creators'
 
 class Main extends Component {
+  componentDidMount() {
+    this.props.fetchManagers()
+  }
+
   render() {
     return (
       <div>

@@ -6,7 +6,9 @@ import Input from 'src/components/Input'
 import ListItem from 'src/components/ListItem'
 
 import {fetchManagers} from 'src/state/data/creators'
-import {getFormattedEmployeeList} from 'src/state/data/selectors'
+import {searchInput} from 'src/state/input/creators'
+import {getFilteredEmployeeList} from 'src/state/data/selectors'
+import {getSearchInputValue} from 'src/state/input/selectors'
 
 class Main extends Component {
   state = {
@@ -14,7 +16,7 @@ class Main extends Component {
   }
 
   onChange = e => {
-    this.setState({input: e.target.value})
+    this.props.searchInput(e.target.value)
   }
 
   componentDidMount() {
@@ -22,29 +24,28 @@ class Main extends Component {
   }
 
   render() {
-    console.log(this.state.input)
     return (
       <div>
-        <Input value={this.state.input} onChange={this.onChange} />
+        <Input value={this.props.searchValue} onChange={this.onChange} />
 
-        {this.props.list
-          .filter(x => x.name.includes(this.state.input))
-          .map(x => (
-            <ListItem user={x} key={x.name} />
-          ))}
+        {this.props.list.map(x => (
+          <ListItem user={x} key={x.name} />
+        ))}
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  list: getFormattedEmployeeList(state),
+  list: getFilteredEmployeeList(state),
+  searchValue: getSearchInputValue(state),
 })
 
 const mapDispatchToProps = dispatch => ({
   ...bindActionCreators(
     {
       fetchManagers,
+      searchInput,
     },
     dispatch,
   ),

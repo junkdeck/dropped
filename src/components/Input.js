@@ -1,14 +1,43 @@
-import React from 'react'
+import React, {Component} from 'react'
 import styled from 'styled-components'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
 
-const Input = props => {
-  return <TextInput onChange={props.onChange} value={props.value} />
+import {searchInput} from 'src/state/input/creators'
+import {getSearchInputValue} from 'src/state/input/selectors'
+
+class Input extends Component {
+  onChange = e => {
+    this.props.searchInput(e.target.value)
+  }
+
+  render() {
+    return <TextInput onChange={this.onChange} value={this.props.value} />
+  }
 }
 
 const TextInput = styled.input`
   border: 1px solid #ccc;
   border-radius: 5px;
-  padding: 0.5rem;
+  padding: 1rem;
+  font-size: 1.5rem;
+  width: 100%;
 `
 
-export default Input
+const mapStateToProps = state => ({
+  value: getSearchInputValue(state),
+})
+
+const mapDispatchToProps = dispatch => ({
+  ...bindActionCreators(
+    {
+      searchInput,
+    },
+    dispatch,
+  ),
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Input)

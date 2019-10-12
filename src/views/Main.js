@@ -8,17 +8,8 @@ import ListItem from 'src/components/ListItem'
 import {fetchManagers} from 'src/state/data/creators'
 import {searchInput} from 'src/state/input/creators'
 import {getFilteredEmployeeList} from 'src/state/data/selectors'
-import {getSearchInputValue} from 'src/state/input/selectors'
 
 class Main extends Component {
-  state = {
-    input: '',
-  }
-
-  onChange = e => {
-    this.props.searchInput(e.target.value)
-  }
-
   componentDidMount() {
     this.props.fetchManagers()
   }
@@ -26,7 +17,7 @@ class Main extends Component {
   render() {
     return (
       <div>
-        <Input value={this.props.searchValue} onChange={this.onChange} />
+        <Input />
 
         {this.props.list.map(x => (
           <ListItem user={x} key={x.name} />
@@ -38,7 +29,6 @@ class Main extends Component {
 
 const mapStateToProps = state => ({
   list: getFilteredEmployeeList(state),
-  searchValue: getSearchInputValue(state),
 })
 
 const mapDispatchToProps = dispatch => ({

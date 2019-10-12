@@ -1,12 +1,11 @@
 import React, {Component} from 'react'
 
 class App extends Component {
-  render(){
+  render() {
+    console.log('hey man')
     return (
       <div>
-        <p>
-          hey ho
-        </p>
+        <p>hey ho</p>
       </div>
     )
   }

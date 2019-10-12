@@ -25,11 +25,17 @@ export const getFilteredEmployeeList = createSelector(
   getSearchInputValue,
   getFormattedEmployeeList,
   (value, list) =>
-    list.filter(x =>
-      x.name
+    list.filter(x => {
+      const name = x.name
         .split(' ')
         .join('')
         .toUpperCase()
-        .includes(value.toUpperCase()),
-    ),
+
+      const stripped = value
+        .split(' ')
+        .join('')
+        .toUpperCase()
+
+      return name.includes(stripped)
+    }),
 )

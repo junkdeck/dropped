@@ -1,12 +1,18 @@
 import React, {Component} from 'react'
+import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import styled from 'styled-components'
 
 import ListItem from 'src/components/ListItem'
 
+import {searchInput} from 'src/state/input/creators'
 import {getFilteredEmployeeList} from 'src/state/data/selectors'
 
 class EmployeeList extends Component {
+  onClick = value => {
+    this.props.searchInput(value)
+  }
+
   render() {
     return (
       <List>
@@ -15,6 +21,7 @@ class EmployeeList extends Component {
             <ListItem
               user={employee}
               key={employee.id}
+              onClick={this.onClick}
             />
           ))
         ) : (
@@ -54,3 +61,16 @@ const mapStateToProps = state => ({
   list: getFilteredEmployeeList(state),
 })
 
+const mapDispatchToProps = dispatch => ({
+  ...bindActionCreators(
+    {
+      searchInput,
+    },
+    dispatch,
+  ),
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(EmployeeList)

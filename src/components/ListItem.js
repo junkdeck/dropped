@@ -4,8 +4,12 @@ import styled from 'styled-components'
 import {nameToColor} from 'src/utils/color'
 
 const ListItem = props => {
+  const onClick = () => {
+    props.onClick(props.user.name)
+  }
+
   return (
-    <Wrapper className="wrapper">
+    <Wrapper className="wrapper" onClick={onClick}>
       <Icon style={{backgroundColor: nameToColor(props.user.name)}}>
         {props.user.initials}
       </Icon>

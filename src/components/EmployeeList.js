@@ -19,7 +19,13 @@ class EmployeeList extends Component {
 }
 
 const List = styled.ul`
+  overflow: hidden;
+
   list-style: none;
+
+  border: 1px solid #ccc;
+  border-bottom: none;
+  border-radius: 4px;
 `
 
 const mapStateToProps = state => ({

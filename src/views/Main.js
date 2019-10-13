@@ -1,13 +1,11 @@
 import React, {Component} from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
+import styled from 'styled-components'
 
-import Input from 'src/components/Input'
-import ListItem from 'src/components/ListItem'
+import Dropdown from 'src/components/Dropdown'
 
 import {fetchManagers} from 'src/state/data/creators'
-import {searchInput} from 'src/state/input/creators'
-import {getFilteredEmployeeList} from 'src/state/data/selectors'
 
 class Main extends Component {
   componentDidMount() {
@@ -16,32 +14,27 @@ class Main extends Component {
 
   render() {
     return (
-      <div>
-        <Input />
-
-        {this.props.list.map(x => (
-          <ListItem user={x} key={x.name} />
-        ))}
-      </div>
+      <Wrapper>
+        <Dropdown />
+      </Wrapper>
     )
   }
 }
 
-const mapStateToProps = state => ({
-  list: getFilteredEmployeeList(state),
-})
+const Wrapper = styled.div`
+  margin: 2rem;
+`
 
 const mapDispatchToProps = dispatch => ({
   ...bindActionCreators(
     {
       fetchManagers,
-      searchInput,
     },
     dispatch,
   ),
 })
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps,
 )(Main)

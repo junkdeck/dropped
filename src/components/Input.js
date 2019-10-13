@@ -6,13 +6,29 @@ import {connect} from 'react-redux'
 import {searchInput} from 'src/state/input/creators'
 import {getSearchInputValue} from 'src/state/input/selectors'
 
+import {ESCAPE_KEYS} from 'src/constants'
+
 class Input extends Component {
   onChange = e => {
     this.props.searchInput(e.target.value)
   }
 
+  shouldBlur = e => {
+    if (ESCAPE_KEYS.includes(e.keyCode)) {
+      e.target.blur()
+    }
+  }
+
   render() {
-    return <TextInput onChange={this.onChange} value={this.props.value} />
+    return (
+      <TextInput
+        onChange={this.onChange}
+        onKeyDown={this.shouldBlur}
+        onBlur={this.props.onBlur}
+        onFocus={this.props.onFocus}
+        value={this.props.value}
+      />
+    )
   }
 }
 

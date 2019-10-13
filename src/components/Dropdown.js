@@ -43,6 +43,7 @@ class Dropdown extends Component {
         <CollapseWrapper
           style={{
             maxHeight: this.state.showList ? '30rem' : '0',
+            opacity: this.state.showList ? 1 : 0,
           }}
         >
           <EmployeeList />
@@ -63,6 +64,9 @@ const CollapseWrapper = styled.div`
   width: 100%;
 
   overflow-y: scroll;
+
+  border: 1px solid #ccc;
+  border-radius: 4px;
 
   transition: 300ms ease-in-out;
 `

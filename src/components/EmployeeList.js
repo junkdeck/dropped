@@ -37,9 +37,6 @@ const List = styled.ul`
 
   list-style: none;
 
-  border: 1px solid #ccc;
-  border-bottom: none;
-  border-radius: 4px;
 `
 
 const Empty = styled.div`

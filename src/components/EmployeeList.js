@@ -10,9 +10,16 @@ class EmployeeList extends Component {
   render() {
     return (
       <List>
-        {this.props.list.map(employee => (
-          <ListItem user={employee} key={employee.id} />
-        ))}
+        {this.props.list.length ? (
+          this.props.list.map(employee => (
+            <ListItem
+              user={employee}
+              key={employee.id}
+            />
+          ))
+        ) : (
+          <Empty>No results...</Empty>
+        )}
       </List>
     )
   }
@@ -28,8 +35,22 @@ const List = styled.ul`
   border-radius: 4px;
 `
 
+const Empty = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 3rem;
+
+  font-family: sans-serif;
+  font-style: oblique;
+
+  color: #888;
+
+  border-bottom: 1px solid #ccc;
+`
+
 const mapStateToProps = state => ({
   list: getFilteredEmployeeList(state),
 })
 
-export default connect(mapStateToProps)(EmployeeList)

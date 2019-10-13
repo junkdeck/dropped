@@ -48,8 +48,10 @@ const Wrapper = styled.li`
   border-bottom: 1px solid #ccc;
 
   :hover {
-    background: #f6fcfa;
+    background: #f4faf8;
   }
+
+  transition: 120ms ease-in-out;
 `
 
 const Title = styled.p`
@@ -60,6 +62,8 @@ const Title = styled.p`
   .wrapper:hover & {
     color: #42c481;
   }
+
+  transition: 120ms ease-in-out;
 `
 
 const Email = styled.p`

@@ -16,6 +16,7 @@ export const getFormattedEmployeeList = createSelector(
       return {
         name: x.attributes.name,
         email: account?.attributes.email || null,
+        id: x.id,
         initials: x.attributes.firstName[0] + x.attributes.lastName[0],
       }
     }),

@@ -38,7 +38,7 @@ const Info = styled.div`
   margin-left: 2rem;
 `
 
-const Wrapper = styled.div`
+const Wrapper = styled.li`
   display: flex;
   align-items: center;
 

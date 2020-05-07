@@ -1,6 +1,6 @@
-# Peakon Managers
+# Dropped
 
-Searchable dropdown for Peakon code challenge.  Uses React, Redux and styled-components.
+Searchable dropdown component. Fetches content from API endpoint and renders in a fancy view.
 
 ### Instructions
 
